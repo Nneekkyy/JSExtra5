@@ -1,0 +1,7 @@
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts/fonts.css");
+@import url("../blocks/hotel/hotel.css");
+@import url("../blocks/hotel/__cards/hotel__cards.css");
+@import url("../blocks/hotel/__img/hotel__img.css");
+@import url("../blocks/hotel/__name/hotel__name.css");
+@import url("../blocks/hotel/__price/hotel__price.css");
