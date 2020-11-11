@@ -9,7 +9,7 @@ const mapHotels = hotels.map (function (element) {
 });
 //сортировка по возрастанию
 
-filterHotels.sort((a, b) => a.price - b.price);
+mapHotels.sort((a, b) => a.price - b.price);
 
 //функция создания карточки
 function createHotelCard(title, price, photo) {
@@ -17,7 +17,7 @@ function createHotelCard(title, price, photo) {
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.hotel__img').src = photo;
   cardElement.querySelector(".hotel__name").textContent = title;
-  cardElement.querySelector(".hotel__price").textContent = price;
+  cardElement.querySelector(".hotel__price-value").textContent = price;
   return cardElement;
 }
 //добавление карточки, если в массиве есть данные
@@ -27,6 +27,6 @@ function addCard(title, price, photo) {
     }
 }
 //создание карточек из массива
-filterHotels.forEach(function (card) {
+mapHotels.forEach(function (card) {
   addCard(card.title, card.price, card.photo);
 });
