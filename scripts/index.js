@@ -9,7 +9,7 @@ const mapHotels = hotels.map (function (element) {
 });
 //сортировка по возрастанию
 
-filterHotels.sort((a, b) => a.price - b.price);
+mapHotels.sort((a, b) => a.price - b.price);
 
 //функция создания карточки
 function createHotelCard(title, price, photo) {
@@ -27,6 +27,6 @@ function addCard(title, price, photo) {
     }
 }
 //создание карточек из массива
-filterHotels.forEach(function (card) {
+mapHotels.forEach(function (card) {
   addCard(card.title, card.price, card.photo);
 });
