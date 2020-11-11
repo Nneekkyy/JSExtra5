@@ -17,7 +17,7 @@ function createHotelCard(title, price, photo) {
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.hotel__img').src = photo;
   cardElement.querySelector(".hotel__name").textContent = title;
-  cardElement.querySelector(".hotel__price").textContent = price;
+  cardElement.querySelector(".hotel__price-value").textContent = price;
   return cardElement;
 }
 //добавление карточки, если в массиве есть данные
