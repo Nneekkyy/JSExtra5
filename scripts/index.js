@@ -1,23 +1,17 @@
+//импорт массива
 import {hotels} from './HotelData.js';
 
-//создаём новый массив из изначального
 const cardTemplate = document.querySelector('#hotels').content;
 const cardContainer = document.querySelector('.hotel');
-
+//новый массив
 const mapHotels = hotels.map (function (element) {
   return element
 });
-
-// const filterHotels = mapHotels.filter(Boolean);
-var a = [1, 2, "b", 0, {}, "", NaN, 3, undefined, null, 5];
-
-var filterHotels = mapHotels.filter(Boolean);
-
-console.log(filterHotels);
+//сортировка по возрастанию
 
 filterHotels.sort((a, b) => a.price - b.price);
 
-
+//функция создания карточки
 function createHotelCard(title, price, photo) {
   console.log(price);
   const cardElement = cardTemplate.cloneNode(true);
@@ -26,14 +20,13 @@ function createHotelCard(title, price, photo) {
   cardElement.querySelector(".hotel__price").textContent = price;
   return cardElement;
 }
-
+//добавление карточки, если в массиве есть данные
 function addCard(title, price, photo) {
     if (price && title && photo) {
       cardContainer.append(createHotelCard(title, price, photo));
     }
 }
-//обходим массив, чтоб создать карточки и добавить в конец контейнера
-
+//создание карточек из массива
 filterHotels.forEach(function (card) {
   addCard(card.title, card.price, card.photo);
 });
