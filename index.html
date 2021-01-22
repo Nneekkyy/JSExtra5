@@ -7,22 +7,32 @@
     <title>JSExtra 5 Sprint</title>
 </head>
 <body class="body">
-  <div class="button-sort">
+<div class="button-sort">
     <button class="button-sort__down" type="button" name="button">Сортировать по убыванию</button>
     <button class="button-sort__up" type="button" name="button">Сортировать по возрастанию</button>
-  </div>
+</div>
 
 <ul class="hotel">
 
 </ul>
 <button id="buttoncss" class="button-more button-more_css" type="button" name="button">Показать больше(все сразу)</button>
 <button id="buttonjs" class="button-more button-more_js" type="button" name="button">Показать больше(по-одному)</button>
+<div class="popup popup_opened">
+    <div class="popup__container">
+        <button class="popup__close">close</button>
+        <li class="hotel__cards">
+            <img class="hotel__img" src="" alt="">
+            <h1 class="hotel__name"></h1>
+            <p class="hotel__price">€ <span class="hotel__price-value"></span> </p>
+        </li>
+    </div>
+</div>
 <template id="hotels">
-  <li class="hotel__cards">
-      <img class="hotel__img" src="" alt="">
-      <h1 class="hotel__name"></h1>
-      <p class="hotel__price">€ <span class="hotel__price-value"></span> </p>
-  </li>
+    <li class="hotel__cards">
+        <img class="hotel__img" src="" alt="">
+        <h1 class="hotel__name"></h1>
+        <p class="hotel__price">€ <span class="hotel__price-value"></span> </p>
+    </li>
 </template>
 <script type="module" src="./scripts/HotelData.js"></script>
 <script type="module" src="./scripts/index1.js"></script>
