@@ -30,7 +30,7 @@ const createHotelCard = (hotel) => {
 
   return cardElement;
 }
-//сортировка по возрастанию
+
 function sortToggle () {
   if (appState.sortMethod) {
     hotels.sort((a, b) => b.price - a.price);
@@ -46,7 +46,7 @@ const validateHotels = () => {
   appState.hotels = hotels.filter(item => item.price).filter(item => item.photo);
 };
 
-//добавление карточки, если в массиве есть данные
+
 const renderHotels = () => {
   cardContainer.textContent = '';
   validateHotels();
@@ -89,4 +89,30 @@ maxSortButton.addEventListener('click', function () {
 const closePopup = () => {
   popup.classList.remove('popup_opened');
 };
-closeButton.addEventListener('click', closePopup)
+closeButton.addEventListener('click', closePopup);
+
+
+const nums = [2,5,1,3,4,7]
+const n = 3;
+let i = 0;
+const a = nums.slice(0, n);
+const b = nums.slice(n, nums.length);
+console.log(a);
+console.log(b);
+
+let c=[];
+c.push(a[i], b[i]);
+c.push(a[i+1], b[i+1]);
+c.push(a[i+2], b[i+2]);
+console.log(c);
+//   while (i < n) {
+//     i++;
+//
+//     const d = a[i-1];
+//     const e = b[i-1];
+//    return d,e;
+//   }
+//
+// let c = [];
+// c.push(d, e);
+// console.log(c);
