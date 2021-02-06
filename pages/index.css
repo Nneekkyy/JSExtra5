@@ -5,3 +5,15 @@
 @import url("../blocks/hotel/__img/hotel__img.css");
 @import url("../blocks/hotel/__name/hotel__name.css");
 @import url("../blocks/hotel/__price/hotel__price.css");
+@import url("../blocks/hotel/_show/hotel_show.css");
+@import url("../blocks/button-more/button-more.css");
+@import url("../blocks/button-sort/button-sort.css");
+@import url("../blocks/button-sort/__down/button-sort__down.css");
+@import url("../blocks/button-sort/__up/button-sort__up.css");
+@import url("../blocks/button-more/_hide/button-more_hide.css");
+@import url("../blocks/button-more/_js/button-more_js.css");
+@import url("../blocks/button-more/_css/button-more_css.css");
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/__close/popup__close.css");
+@import url("../blocks/popup/__container/popup__container.css");
+@import url("../blocks/popup/_opened/popup_opened.css");

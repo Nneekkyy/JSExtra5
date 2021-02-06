@@ -1,0 +1,7 @@
+.button-sort {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
