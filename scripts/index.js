@@ -1,95 +1,112 @@
-
 //импорт массива
 import {hotels} from './HotelData.js';
 
 const cardTemplate = document.querySelector('#hotels').content;
+const popup = document.querySelector('.popup');
 const cardContainer = document.querySelector('.hotel');
-const firstButton = document.querySelector('#buttoncss');
-const secondButton = document.querySelector('#buttonjs');
-const hotelList = document.querySelector('.hotel');
-//новый массив
-const mapHotels = hotels.map (function (element) {
-  return element
-});
-//сортировка по возрастанию
+const minSortButton = document.querySelector('.button-sort__down');
+const maxSortButton = document.querySelector('.button-sort__up');
+const showMinButton = document.querySelector('#buttonjs');
+const showMoreButton = document.querySelector('#buttoncss');
+const closeButton = document.querySelector('.popup__close');
+const Image = document.querySelector('#image');
+const Title = document.querySelector('#title');
+const Price = document.querySelector('#price');
+const popuped = document.querySelector('#popup');
 
-mapHotels.sort((a, b) => a.price - b.price);
+//состояние
+const appState = {
+  sortMethod: undefined,
+  visibleHotels: 2,
+  hotels: [],
+  isPopupOpen: false,
+}
 
 //функция создания карточки
-function createHotelCard(title, price, photo) {
+const createHotelCard = (hotel) => {
   const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector('.hotel__img').src = photo;
-  cardElement.querySelector(".hotel__name").textContent = title;
-  cardElement.querySelector(".hotel__price-value").textContent = price;
+  const hotelPhoto = cardElement.querySelector('.hotel__img');
+  const hotelTitle = cardElement.querySelector('.hotel__name');
+  const hotelPrice = cardElement.querySelector('.hotel__price-value');
+  hotelPhoto.src = hotel.photo;
+  hotelTitle.textContent = hotel.title;
+  hotelPrice.textContent = hotel.price;
+
   return cardElement;
 }
-//добавление карточки, если в массиве есть данные
-// function addCard(title, price, photo) {
-//     if (price && title && photo) {
-//       console.log(photo);
-//       cardContainer.append(createHotelCard(title, price, photo));
-//     }
-// }
-//вывод первых двух карточек из массива
-// const sliceHotels = mapHotels.slice(0,2);
-//
-// sliceHotels.forEach(function (card) {
-//   addCard(card.title, card.price, card.photo);
-// });
-//
-// console.log(mapHotels);
-// console.log(sliceHotels);
 
-function filterByNull(card) {
-    if (card.title && card.price && card.photo) {
-        return true;
-    }
-    return false;
+function sortToggle () {
+  if (appState.sortMethod) {
+    hotels.sort((a, b) => b.price - a.price);
+    renderHotels();
+  } else {
+    hotels.sort((a, b) => a.price - b.price);
+    renderHotels();
+  }
+
+  return appState.hotels;
 }
 
-const filterHotels = mapHotels.filter(filterByNull);
-const sliceHotels = filterHotels.slice(0,2);
-filterHotels.shift();
-filterHotels.shift();
-sliceHotels.forEach(function (card) {
-  cardContainer.append(createHotelCard(card.title, card.price, card.photo));
-});
-
-firstButton.addEventListener('click', function () {
-  const sliceNewHotels = filterHotels.slice(0);
-  sliceNewHotels.forEach(function (card) {
-    cardContainer.append(createHotelCard(card.title, card.price, card.photo));
-  });
-  console.log(filterHotels);
-  firstButton.classList.add('button-more_hide');
-  secondButton.classList.add('button-more_hide');
-});
-function asd () {
-
-  return shiftHotels;
+const validateHotels = () => {
+  appState.hotels = hotels.filter(item => item.price).filter(item => item.photo);
 };
 
-secondButton.addEventListener('click', function () {
-  let shiftHotels = filterHotels.shift();
-  const shiftedHotels = shiftHotels.map (function (element) {
-    return element
-  });
-  shiftedHotels(function (card) {
-    cardContainer.append(createHotelCard(card.title, card.price, card.photo));
-  });
-  firstButton.classList.add('button-more_hide');
-  secondButton.classList.add('button-more_hide');
+
+const renderHotels = () => {
+  cardContainer.textContent = '';
+  validateHotels();
+  const hotelsToRender = appState.hotels.slice(0, appState.visibleHotels)
+  hotelsToRender.forEach(item => cardContainer.append(createHotelCard(item)));
+};
+const hideButton = () => {
+  showMinButton.classList.add('button-more_hide');
+  showMoreButton.classList.add('button-more_hide');
+}
+renderHotels();
+
+const addAppStateVisible = () => {
+  appState.visibleHotels++;
+}
+showMinButton.addEventListener('click', function () {
+  if (appState.hotels.length!=appState.visibleHotels) {
+    addAppStateVisible();
+    renderHotels();
+  } else {
+    hideButton();
+  }
 });
 
-// //скрипт для кнопки overflow
-// mapHotels.forEach(function (card) {
-//   addCard(card.title, card.price, card.photo);
-// });
-// function closeTwoButton() {
-//   firstButton.classList.add('button-more_hide');
-//   secondButton.classList.add('button-more_hide');
-// };
-// firstButton.addEventListener('click', function () {
-//   hotelList.classList.add('hotel_show');
-//   closeTwoButton();
-// });
+showMoreButton.addEventListener('click', function () {
+    appState.visibleHotels = appState.hotels.length;
+    addAppStateVisible();
+    renderHotels();
+    hideButton();
+})
+
+minSortButton.addEventListener('click', function () {
+  appState.sortMethod = true;
+  sortToggle();
+});
+maxSortButton.addEventListener('click', function () {
+  appState.sortMethod = false;
+  sortToggle();
+});
+const closePopup = () => {
+  popup.classList.remove('popup_opened');
+};
+closeButton.addEventListener('click', closePopup);
+const closePopuped = (e) => {
+  if (e.keyCode === 27) {
+    closePopup();
+  }
+};
+document.addEventListener('keydown', closePopuped);
+
+window.onmouseout=function(event){
+  if(event.toElement===null) {
+    Image.src = appState.hotels[0].photo;
+    Title.textContent = appState.hotels[0].title;
+    Price.textContent = appState.hotels[0].price;
+    popuped.classList.add('popup_opened')
+  };
+}
