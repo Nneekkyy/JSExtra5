@@ -9,4 +9,4 @@
 Сортировка карточек, показать большее количество карточек.
 
 ## Ссылка на Github Pages
-https://barrrsss.github.io/JSExtra5/
+https://nneekkyy.github.io/JSExtra5/
